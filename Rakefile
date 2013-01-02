@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "peep_show"
   gem.homepage = "http://github.com/timwhite47/peep_show"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Creates previews for your models on Facebook and Twitter}
+  gem.description = %Q{Creates previews for your models on Facebook and Twitter}
   gem.email = "timwhite47@gmail.com"
   gem.authors = ["Tim White"]
   # dependencies defined in Gemfile
