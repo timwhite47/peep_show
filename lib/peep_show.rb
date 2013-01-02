@@ -47,9 +47,11 @@ def process_hash(obj, hash)
 
   hash.each do |key, value|
     if value.class == Proc
-      new_hash.merge!({key => value.call(obj)})
+      new_hash.merge!({key => (value.call(obj) rescue nil)})
     else
       new_hash.merge!({key => value})
     end
   end
+  
+  return new_hash
 end
