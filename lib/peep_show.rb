@@ -37,7 +37,7 @@ module PeepShow
         preview = object.preview
 
         preview[:fb].each do |k, v|
-          tags += tag('meta', :property => "og:#{k}", :content => value.to_s)
+          tags += tag('meta', :property => "og:#{k}", :content => v.to_s)
           tags += "\n"
         end
 
