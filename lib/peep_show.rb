@@ -10,6 +10,6 @@ module PeepShow
     end    
 end
 
-# class ActiveRecord::Base
-#   include PeepShow
-# end
+class ActiveRecord::Base
+  include PeepShow
+end
