@@ -27,8 +27,8 @@ module PeepShow
 
       define_method :preview do
       	{
-          fb: fb_basic,
-          twitter: twitter_basic
+          fb: process_hash(self, fb_basic),
+          twitter: process_hash(self, twitter_basic)
         }
       end
     end    
@@ -40,4 +40,16 @@ end
 
 def string_or_proc(input)
   ((input.class==Symbol) ? Proc.new {|obj| obj.send(input.to_s) } : input)
+end
+
+def process_hash(obj, hash)
+  new_hash = Hash.new
+
+  hash.each do |key, value|
+    if value.class == Proc
+      new_hash.merge!({key => value.call(obj)})
+    else
+      new_hash.merge!({key => value})
+    end
+  end
 end
