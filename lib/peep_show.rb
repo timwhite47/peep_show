@@ -49,7 +49,7 @@ class ActiveRecord::Base
   include PeepShow
 end
 
-class ActiveView::Base
+class ActionView::Base
   include PeepShow
 end
 
