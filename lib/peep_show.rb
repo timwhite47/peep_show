@@ -31,10 +31,25 @@ module PeepShow
           twitter: process_hash(self, twitter_basic)
         }
       end
-    end    
+    end   
+    def render_templage_tags(object)
+        tags = String.new
+        preview = object.preview
+
+        preview[:fb].each do |k, v|
+          tags += tag('meta', :property => "og:#{k}", :content => value.to_s)
+          tags += "\n"
+        end
+
+        return tags
+    end 
 end
 
 class ActiveRecord::Base
+  include PeepShow
+end
+
+class ActiveView::Base
   include PeepShow
 end
 
@@ -52,6 +67,6 @@ def process_hash(obj, hash)
       new_hash.merge!({key => value})
     end
   end
-  
+
   return new_hash
 end
