@@ -94,6 +94,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionpack
   jquery-rails
   peep_show!
   sqlite3

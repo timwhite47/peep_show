@@ -1,4 +1,5 @@
 module PeepShow
+  include ActionView::Helpers::TagHelper
     def self.included(base)
       base.extend(self)
     end
