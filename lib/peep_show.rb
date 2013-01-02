@@ -4,38 +4,27 @@ module PeepShow
     end
 
     def set_peep_show(*args)
-      options = { }
       preview = args.pop if args.last.kind_of? Hash
       
       fb_basic = {
-        :title => preview[:title], 
+        :title => string_or_proc(preview[:title]), 
         :type => "website", 
-        :image => preview[:image], 
-        :url => preview[:url],
-        :description => preview[:description], 
+        :image => string_or_proc(preview[:image]),  
+        :url => string_or_proc(preview[:url]),  
+        :description => string_or_proc(preview[:description])
       }
 
       twitter_basic = {
         :site => preview[:twitter].try(:[], :site_handle),
         :author => preview[:twitter].try(:[], :author_handle),
         :card => 'summary',
-        :title => preview[:title], 
-        :description => preview[:description],
-        :url => preview[:url],
-        :image => preview[:image]
+        :title => string_or_proc(preview[:title]), 
+        :description => string_or_proc(preview[:description]),
+        :url => string_or_proc(preview[:url]),
+        :image => string_or_proc(preview[:image])
       }
-      # case args.first
-      # when :basic
-      #   fb = fb_basic
-      #   twitter = twitter_basic
-      # when :article
-          
-      # when :image
+      # TODO: ADD SPECIAL :basic, :article, :image, :video 
 
-      # when :video        
-        
-      # end
-      
       define_method :preview do
       	{
           fb: fb_basic,
@@ -47,4 +36,8 @@ end
 
 class ActiveRecord::Base
   include PeepShow
+end
+
+def string_or_proc(input)
+  ((input.class==Symbol) ? Proc.new {|obj| obj.send(input.to_s) } : input)
 end
