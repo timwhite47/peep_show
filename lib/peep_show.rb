@@ -43,7 +43,7 @@ module PeepShow
           tags += "\n"
         end
 
-        return tags
+        return tags.html_safe
       else
         return nil
       end
