@@ -7,13 +7,13 @@ require "peep_show/version"
 Gem::Specification.new do |s|
   s.name        = "peep_show"
   s.version     = PeepShow::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of PeepShow."
-  s.description = "TODO: Description of PeepShow."
+  s.authors     = ["Tim White"]
+  s.email       = ["timwhite47@gmail.com"]
+  s.homepage    = "https://github.com/timwhite47/peep_show"
+  s.summary     = "Generate social media previews of your ActiveRecord objects"
+  s.description = ""
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.1.4"
