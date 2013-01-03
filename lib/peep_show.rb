@@ -34,6 +34,7 @@ module PeepShow
       end
     end   
     def render_templage_tags(object)
+      if object
         tags = String.new
         preview = object.preview
 
@@ -43,6 +44,10 @@ module PeepShow
         end
 
         return tags
+      else
+        return nil
+      end
+
     end 
 end
 
