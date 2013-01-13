@@ -9,14 +9,11 @@ or
 `gem 'peep_show'`
 
 # Settting up
-In your environments put in the host file in a config block
-
-    `PeepShow.setup do |config|
-        config.app_root = app.root
-	end`
 
 In your models define the methods
 `set_peep_show :title => :title, :description => :summary, :image => :image_url, :url => 'http://www.tenacioustimi.com'`
+
+_NOTE_: if no `:url` param is set it will default to the show url for the object. I.e. `@preview = Product.find(1)` would produce the equivelant of `product_url(@preview)`
 
 In your controller define what is going to be previewed
 `@preview = Product.find(params[:id])`
