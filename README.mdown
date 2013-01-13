@@ -9,6 +9,12 @@ or
 `gem 'peep_show'`
 
 # Settting up
+In your environments put in the host file in a config block
+
+    `PeepShow.setup do |config|
+        config.app_root = app.root
+	end`
+
 In your models define the methods
 `set_peep_show :title => :title, :description => :summary, :image => :image_url, :url => 'http://www.tenacioustimi.com'`
 
@@ -20,13 +26,10 @@ In your views do this:
 
 Or in your controller you can set them like this
 
-`
-	def show
-		@product = Product.find(params[:id])
-
-		set_preview @product
-	end
-`
+	`def show
+			@product = Product.find(params[:id])
+			set_preview @product
+	end`
 
 This will render out your Open Graph and Twitter Card tags.
 

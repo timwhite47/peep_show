@@ -4,6 +4,10 @@ module PeepShow
       base.extend(self)
     end
 
+    def self.setup
+      yield self
+    end
+
     def set_peep_show(*args)
       preview = args.pop if args.last.kind_of? Hash
       
@@ -39,6 +43,7 @@ module PeepShow
         preview = object.preview
 
         if preview[:fb][:url].nil? or preview[:twitter][:url].nil?
+          Rails.application.routes.default_url_options[:host]= self.config.default_url_options[:host]
           url = Rails.application.routes.url_helpers.send(object.class.to_s.downcase+"_url", object)
           preview[:fb][:url] ||= url
           preview[:twitter][:url] ||= url
