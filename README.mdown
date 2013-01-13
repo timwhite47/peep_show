@@ -18,5 +18,22 @@ In your controller define what is going to be previewed
 In your views do this:
 `render_templage_tags @preview`
 
+Or in your controller you can set them like this
+
+`
+	def show
+		@product = Product.find(params[:id])
+
+		set_preview @product
+	end
+`
+
 This will render out your Open Graph and Twitter Card tags.
 
+TODO
+====
+
+* Add Twitter Card integration
+* Create Active Controller hack
+* Setup `Support` module
+ 
