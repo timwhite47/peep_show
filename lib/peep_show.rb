@@ -1,13 +1,9 @@
 module PeepShow
   include ActionView::Helpers::TagHelper
-    mattr_accessor :default_url_options
+    mattr_accessor :default_url_options, :config
 
     def self.included(base)
       base.extend(self)
-    end
-
-    def self.setup
-      yield self
     end
 
     def set_peep_show(*args)
@@ -33,7 +29,7 @@ module PeepShow
       # TODO: ADD SPECIAL :basic, :article, :image, :video 
 
       define_method :preview do
-      	{
+        {
           fb: process_hash(self, fb_basic),
           twitter: process_hash(self, twitter_basic)
         }
@@ -45,8 +41,9 @@ module PeepShow
         preview = object.preview
 
         if preview[:fb][:url].nil? or preview[:twitter][:url].nil?
-          Rails.application.routes.default_url_options = self.config.default_url_options
-          url = Rails.application.routes.url_helpers.send(object.class.to_s.downcase+"_url", object)
+          path = object.class.to_s.downcase+"_url"
+          params = {:host => Rails.application.config.action_controller.default_url_options[:host]}
+          url = Rails.application.routes.url_helpers.send(path, object, params)
           preview[:fb][:url] ||= url
           preview[:twitter][:url] ||= url
         end
