@@ -16,8 +16,8 @@ module PeepShow
       }
 
       twitter_basic = {
-        :site => "@" + preview[:twitter].try(:[], :site_handle),
-        :author => "@" + preview[:twitter].try(:[], :author_handle),
+        :site => preview[:twitter].try(:[], :site_handle),
+        :author => preview[:twitter].try(:[], :author_handle),
         :card => 'summary',
         :title => string_or_proc(preview[:title]), 
         :description => string_or_proc(preview[:description]),
