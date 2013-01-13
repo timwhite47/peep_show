@@ -1,6 +1,7 @@
 module PeepShow
   include ActionView::Helpers::TagHelper
-  attr_accessor :default_url_options
+    mattr_accessor :default_url_options
+    
     def self.included(base)
       base.extend(self)
     end
