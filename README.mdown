@@ -35,5 +35,6 @@ TODO
 
 * Add Twitter Card integration
 * Create Active Controller hack
+* Default url to show of product
 * Setup `Support` module
  

@@ -38,9 +38,14 @@ module PeepShow
         tags = String.new
         preview = object.preview
 
+        if preview[:fb].nil? or preview[:twitter].nil?
+          url = Rails.application.routes.url_helpers.send(object.class.to_s.downcase+"_url", object)
+          preview[:fb] ||= url
+          preview[:twitter] ||= url
+        end
+
         preview[:fb].each do |k, v|
-          tags += tag('meta', :property => "og:#{k}", :content => v.to_s)
-          tags += "\n"
+          tags += (tag('meta', :property => "og:#{k}", :content => v.to_s)+ "\n") if v.present?
         end
 
         preview[:twitter].each do |k, v|
