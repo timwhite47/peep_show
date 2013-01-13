@@ -38,10 +38,10 @@ module PeepShow
         tags = String.new
         preview = object.preview
 
-        if preview[:fb].nil? or preview[:twitter].nil?
+        if preview[:fb][:url].nil? or preview[:twitter][:url].nil?
           url = Rails.application.routes.url_helpers.send(object.class.to_s.downcase+"_url", object)
-          preview[:fb] ||= url
-          preview[:twitter] ||= url
+          preview[:fb][:url] ||= url
+          preview[:twitter][:url] ||= url
         end
 
         preview[:fb].each do |k, v|
